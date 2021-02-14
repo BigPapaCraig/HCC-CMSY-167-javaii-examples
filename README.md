@@ -1,3 +1,0 @@
-# Java Examples
-
-Example programs in Java.
