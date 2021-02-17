@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
-public class PrimaryController {
+public class PizzaController {
 
     @FXML
     private TextField subtotalTextField;
