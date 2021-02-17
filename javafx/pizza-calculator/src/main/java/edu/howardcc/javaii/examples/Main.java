@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * A simple GUI app that compares the value of two pizzas
  */
 public class Main extends Application {
 
@@ -18,6 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("pizza"));
+        stage.setTitle("Pizza Value Calculator");
         stage.setScene(scene);
         stage.show();
     }
