@@ -60,7 +60,7 @@ public class PizzaController {
     private Double initialPizzaTwoSliderValue;
 
     // Called by FXMLLoader to  initialize the controller
-    public void initialize(){
+    public void initialize() {
         // Save initial values from the FXML for later use
         initialMessage = messageLabel.getText();
 
