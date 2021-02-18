@@ -8,8 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 
+/**
+ * Controller class for Pizza Calculator App
+ */
 public class PizzaController {
 
     @FXML
@@ -52,6 +54,8 @@ public class PizzaController {
     private Button resetButton;
 
     private String initialMessage;
+    private String initialPizzaOneNameValue;
+    private String initialPizzaTwoNameValue;
     private Double initialPizzaOneSliderValue;
     private Double initialPizzaTwoSliderValue;
 
@@ -60,25 +64,36 @@ public class PizzaController {
         // Save initial values from the FXML for later use
         initialMessage = messageLabel.getText();
 
+        initialPizzaOneNameValue = pizzaOneNameTextField.getText();
+        initialPizzaTwoNameValue = pizzaTwoNameTextField.getText();
+
         initialPizzaOneSliderValue = pizzaOneDiameterSlider.getValue();
         initialPizzaTwoSliderValue = pizzaTwoDiameterSlider.getValue();
 
-        // Set up listeners for editable controls to clear calculated values when an input changes
+        // Set up listeners for editable controls to clear calculated values when an input changes using several different mechanisms
+        // Anonymous class
         pizzaOneDiameterSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 clearCalculatedControls();
             }
         });
-        pizzaOneCostTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                clearCalculatedControls();
-            }
-        });
-        // Same thing, but with the lambda style
+        // Inner class
+        pizzaOneCostTextField.textProperty().addListener(new ClearOutputChangeListener<>());
+        // Lambda
         pizzaTwoDiameterSlider.valueProperty().addListener((observableValue, number, t1) -> clearCalculatedControls());
         pizzaTwoCostTextField.textProperty().addListener((observableValue, s, t1) -> clearCalculatedControls());
+    }
+
+    /**
+     * Listener class that clears all calculated controls when it detects a change
+     * @param <T>
+     */
+    private class ClearOutputChangeListener<T> implements  ChangeListener<T> {
+        @Override
+        public void changed(ObservableValue<? extends T> observableValue, T t, T t1) {
+            clearCalculatedControls();
+        }
     }
 
     /**
@@ -123,19 +138,19 @@ public class PizzaController {
     }
 
     /**
-     * Clear all fields when the Reset button is pressed
+     * Reset all fields when the Reset button is pressed
      */
     @FXML
     void onResetButtonPressed(ActionEvent event) {
         messageLabel.setText(initialMessage);
 
-        pizzaOneNameTextField.clear();
+        pizzaOneNameTextField.setText(initialPizzaOneNameValue);
         pizzaOneDiameterSlider.setValue(initialPizzaOneSliderValue);
         pizzaOneCostTextField.clear();
         pizzaOneAreaTextField.clear();
         pizzaOneValueTextField.clear();
 
-        pizzaTwoNameTextField.clear();
+        pizzaTwoNameTextField.setText(initialPizzaTwoNameValue);
         pizzaTwoDiameterSlider.setValue(initialPizzaTwoSliderValue);
         pizzaTwoCostTextField.clear();
         pizzaTwoAreaTextField.clear();

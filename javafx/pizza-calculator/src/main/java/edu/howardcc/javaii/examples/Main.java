@@ -4,12 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 /**
- * A simple GUI app that compares the value of two pizzas
+ * Launch a simple GUI app that compares the value of two pizzas
  */
 public class Main extends Application {
 
@@ -19,6 +20,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("pizza"));
         stage.setTitle("Pizza Value Calculator");
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("pizza.png")));
         stage.setScene(scene);
         stage.show();
     }
