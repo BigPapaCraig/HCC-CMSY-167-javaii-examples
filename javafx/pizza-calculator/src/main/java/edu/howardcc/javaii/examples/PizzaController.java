@@ -1,10 +1,14 @@
 package edu.howardcc.javaii.examples;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 
 public class PizzaController {
 
@@ -12,7 +16,7 @@ public class PizzaController {
     private TextField pizzaOneNameTextField;
 
     @FXML
-    private TextField pizzaOneDiameterTextField;
+    private Slider pizzaOneDiameterSlider;
 
     @FXML
     private TextField pizzaOneCostTextField;
@@ -27,7 +31,7 @@ public class PizzaController {
     private TextField pizzaTwoNameTextField;
 
     @FXML
-    private TextField pizzaTwoDiameterTextField;
+    private Slider pizzaTwoDiameterSlider;
 
     @FXML
     private TextField pizzaTwoCostTextField;
@@ -48,11 +52,33 @@ public class PizzaController {
     private Button resetButton;
 
     private String initialMessage;
+    private Double initialPizzaOneSliderValue;
+    private Double initialPizzaTwoSliderValue;
 
     // Called by FXMLLoader to  initialize the controller
     public void initialize(){
-        // Save initial message for later use
+        // Save initial values from the FXML for later use
         initialMessage = messageLabel.getText();
+
+        initialPizzaOneSliderValue = pizzaOneDiameterSlider.getValue();
+        initialPizzaTwoSliderValue = pizzaTwoDiameterSlider.getValue();
+
+        // Set up listeners for editable controls to clear calculated values when an input changes
+        pizzaOneDiameterSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                clearCalculatedControls();
+            }
+        });
+        pizzaOneCostTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                clearCalculatedControls();
+            }
+        });
+        // Same thing, but with the lambda style
+        pizzaTwoDiameterSlider.valueProperty().addListener((observableValue, number, t1) -> clearCalculatedControls());
+        pizzaTwoCostTextField.textProperty().addListener((observableValue, s, t1) -> clearCalculatedControls());
     }
 
     /**
@@ -66,7 +92,7 @@ public class PizzaController {
         try {
             String pizzaOneName = pizzaOneNameTextField.getText();
             double pizzaOneCost = Double.parseDouble(pizzaOneCostTextField.getText());
-            double pizzaOneRadius = Double.parseDouble(pizzaOneDiameterTextField.getText()) / 2;
+            double pizzaOneRadius = pizzaOneDiameterSlider.getValue() / 2;
             double pizzaOneArea = Math.PI * Math.pow(pizzaOneRadius, 2);
             pizzaOneAreaTextField.setText(String.format("%.2f", pizzaOneArea));
             double pizzaOneValue = pizzaOneArea / pizzaOneCost;
@@ -74,17 +100,17 @@ public class PizzaController {
 
             String pizzaTwoName = pizzaTwoNameTextField.getText();
             double pizzaTwoCost = Double.parseDouble(pizzaTwoCostTextField.getText());
-            double pizzaTwoRadius = Double.parseDouble(pizzaTwoDiameterTextField.getText()) / 2;
+            double pizzaTwoRadius = pizzaTwoDiameterSlider.getValue() / 2;
             double pizzaTwoArea = Math.PI * Math.pow(pizzaTwoRadius, 2);
             pizzaTwoAreaTextField.setText(String.format("%.2f", pizzaTwoArea));
             double pizzaTwoValue = pizzaTwoArea / pizzaTwoCost;
             pizzaTwoValueTextField.setText(String.format("%.2f", pizzaTwoValue));
 
             if (pizzaOneValue > pizzaTwoValue) {
-                messageLabel.setText(String.format("%s is a better deal that %s.", pizzaOneName, pizzaTwoName));
+                messageLabel.setText(String.format("%s is a better deal than %s.", pizzaOneName, pizzaTwoName));
             }
             else if (pizzaTwoValue > pizzaOneValue) {
-                messageLabel.setText(String.format("%s is a better deal that %s.", pizzaTwoName, pizzaOneName));
+                messageLabel.setText(String.format("%s is a better deal than %s.", pizzaTwoName, pizzaOneName));
             }
             else {
                 messageLabel.setText("The value is the same! Which one tastes better?");
@@ -104,14 +130,28 @@ public class PizzaController {
         messageLabel.setText(initialMessage);
 
         pizzaOneNameTextField.clear();
-        pizzaOneDiameterTextField.clear();
+        pizzaOneDiameterSlider.setValue(initialPizzaOneSliderValue);
         pizzaOneCostTextField.clear();
         pizzaOneAreaTextField.clear();
         pizzaOneValueTextField.clear();
 
         pizzaTwoNameTextField.clear();
-        pizzaTwoDiameterTextField.clear();
+        pizzaTwoDiameterSlider.setValue(initialPizzaTwoSliderValue);
         pizzaTwoCostTextField.clear();
+        pizzaTwoAreaTextField.clear();
+        pizzaTwoValueTextField.clear();
+    }
+
+
+    /**
+     * Clear the output values when an input value is modified
+     */
+    private void clearCalculatedControls() {
+        messageLabel.setText(initialMessage);
+
+        pizzaOneAreaTextField.clear();
+        pizzaOneValueTextField.clear();
+
         pizzaTwoAreaTextField.clear();
         pizzaTwoValueTextField.clear();
     }
