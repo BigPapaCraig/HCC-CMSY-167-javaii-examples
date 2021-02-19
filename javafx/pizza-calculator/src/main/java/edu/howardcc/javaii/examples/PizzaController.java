@@ -74,15 +74,15 @@ public class PizzaController {
         // Anonymous class
         pizzaOneDiameterSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
                 clearCalculatedControls();
             }
         });
         // Inner class
         pizzaOneCostTextField.textProperty().addListener(new ClearOutputChangeListener<>());
         // Lambda
-        pizzaTwoDiameterSlider.valueProperty().addListener((observableValue, number, t1) -> clearCalculatedControls());
-        pizzaTwoCostTextField.textProperty().addListener((observableValue, s, t1) -> clearCalculatedControls());
+        pizzaTwoDiameterSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> clearCalculatedControls());
+        pizzaTwoCostTextField.textProperty().addListener((observableValue, oldValue, newValue) -> clearCalculatedControls());
     }
 
     /**
@@ -91,7 +91,7 @@ public class PizzaController {
      */
     private class ClearOutputChangeListener<T> implements  ChangeListener<T> {
         @Override
-        public void changed(ObservableValue<? extends T> observableValue, T t, T t1) {
+        public void changed(ObservableValue<? extends T> observableValue, T oldValue, T newValue) {
             clearCalculatedControls();
         }
     }
