@@ -34,21 +34,24 @@ public class ListPopulation {
      * Create an immutable(not modifiable) list using Arrays.asList (JDK 8+)
      */
     private static List<String> createListWithArraysAsList() {
-        return Arrays.asList("Larson", "Tolkien", "Dubner", "Rothfuss");
+        List<String> list = Arrays.asList("Larson", "Tolkien", "Dubner", "Rothfuss");
+        return list;
     }
 
     /**
      * Create an immutable(not modifiable) list using List.of (JDK 9+)
      */
     private static List<String> createListWithListOf() {
-        return List.of("Larson", "Tolkien", "Dubner", "Rothfuss");
+        List<String> list = List.of("Larson", "Tolkien", "Dubner", "Rothfuss");
+        return list;
     }
 
     /**
      * Create an mutable(modifiable) list using List.of (JDK 9+)
      */
     private static List<String> createMutableListWithListOf() {
-        return new ArrayList<>(List.of("Larson", "Tolkien", "Dubner", "Rothfuss"));
+        List<String> list = new ArrayList<>(List.of("Larson", "Tolkien", "Dubner", "Rothfuss"));
+        return list;
     }
 
 }
