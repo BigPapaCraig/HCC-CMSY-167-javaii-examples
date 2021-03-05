@@ -1,4 +1,4 @@
-package edu.howardcc.javaii.examples;
+package edu.howardcc.javaii.examples.collections;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,9 +28,9 @@ public class CollectionsDemo {
         System.out.printf("Shuffled List: %s\n", authors);
 
         // Find the first author alphabetically with min
-        System.out.printf("First author(min): %s\n", Collections.min(authors));
+        System.out.printf("First author alphabetically(min): %s\n", Collections.min(authors));
         // Find the last author alphabetically with max
-        System.out.printf("Last author(max): %s\n", Collections.max(authors));
+        System.out.printf("Last author alphabetically(max): %s\n", Collections.max(authors));
 
         // Replace all the elements of the list
         Collections.fill(authors, "Howey");

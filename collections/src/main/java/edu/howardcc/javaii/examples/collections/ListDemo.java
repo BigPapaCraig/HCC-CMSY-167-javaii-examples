@@ -1,4 +1,4 @@
-package edu.howardcc.javaii.examples;
+package edu.howardcc.javaii.examples.collections;
 
 import java.util.ArrayList;
 import java.util.List;
