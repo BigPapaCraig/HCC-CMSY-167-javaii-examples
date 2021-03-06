@@ -20,6 +20,12 @@ public class ListDemo {
         System.out.println("Fourth element: " + authors.get(3));
         System.out.println("Index of \"Dubner\": " + authors.indexOf("Dubner"));
 
+        // Iterate through the list and print
+        System.out.println("\nAuthors:");
+        for(String author : authors) {
+            System.out.printf("\t%s\n", author);
+        }
+
         // Remove an element
         System.out.println("\nRemoving \"Rothfuss\"");
         authors.remove("Rothfuss");
