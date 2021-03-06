@@ -21,7 +21,7 @@ public class SortingCardsDemo {
         System.out.println("\n\nNatural Ordering (compareTo):");
         CardUtils.printCards(deckOfCards);
 
-        // Sort using custom comparator (rank, then suit)
+        // Sort using custom comparator (suit, then rank)
         Collections.sort(deckOfCards, new Comparator<Card>(){
             public int compare(Card card1, Card card2) {
 
