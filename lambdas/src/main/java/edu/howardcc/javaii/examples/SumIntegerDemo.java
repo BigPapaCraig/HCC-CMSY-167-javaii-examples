@@ -12,8 +12,8 @@ public class SumIntegerDemo {
         int max = 10;
 
         System.out.printf("Sum with loop: %s\n", sumWithForLoop(max));
-
         System.out.printf("Sum with streams: %s\n", sumWithStream(max));
+        System.out.printf("Sum with streams(custom reduce): %s\n", sumWithStreamReduce(max));
 
     }
 
@@ -27,9 +27,15 @@ public class SumIntegerDemo {
         return  total;
     }
 
-
     private static int sumWithStream(int max) {
         int total = IntStream.rangeClosed(1, 10).sum();
+
+        return total;
+    }
+
+    private static int sumWithStreamReduce(int max) {
+        int total = IntStream.rangeClosed(1, 10)
+                .reduce(0, (sum, next) -> sum + next);
 
         return total;
     }
