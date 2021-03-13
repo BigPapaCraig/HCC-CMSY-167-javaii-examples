@@ -11,7 +11,8 @@ public class InfiniteStreamDemo {
     public static void main(String[] args) {
 
         // Count by fives with an infinite stream
-        System.out.println(Stream.iterate(5, i -> i + 5).limit(20).collect(Collectors.toList()));
+        System.out.println(Stream.iterate(5, i -> i + 5).limit(20).map(Object::toString)
+                .collect(Collectors.joining(", ")));
 
     }
 
