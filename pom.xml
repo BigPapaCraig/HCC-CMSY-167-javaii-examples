@@ -16,7 +16,7 @@
     <module>inheritance</module>
     <module>collections</module>
     <module>scratch</module>
-    <module>lambdas</module>
+    <module>lambdas-and-streams</module>
   </modules>
 
 </project>
