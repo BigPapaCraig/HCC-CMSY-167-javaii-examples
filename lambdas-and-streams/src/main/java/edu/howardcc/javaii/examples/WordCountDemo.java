@@ -25,8 +25,6 @@ public class WordCountDemo {
         Map<String, Long> wordCounts = Files.lines(POEM_PATH)
                 // Split each line into individual words
                 .flatMap(line -> Arrays.stream(line.split("\\s+")))
-                // Convert each word to upper case
-                .map(String::toUpperCase)
                 // Remove all non-word characters
                 .map(word -> word.replaceAll("\\W", ""))
                 // Drop any empty strings
