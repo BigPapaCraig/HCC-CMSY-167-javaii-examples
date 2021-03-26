@@ -17,6 +17,7 @@
     <module>collections</module>
     <module>scratch</module>
     <module>lambdas-and-streams</module>
+    <module>recursion</module>
   </modules>
 
 </project>
