@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class Fibonacci {
 
-    private static final int NUMBER_OF_ELEMENTS = 43;
+    private static final int NUMBER_OF_ELEMENTS = 45;
 
     public static void main(String[] args) {
 

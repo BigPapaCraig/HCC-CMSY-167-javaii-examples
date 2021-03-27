@@ -12,9 +12,11 @@ public class RecursiveFactorial {
 
     private static int factorial(int n) {
         if (n == 0) {
+            // Base case
             return 1;
         }
         else {
+            // Recursive call
             return n * factorial(n - 1);
         }
     }
