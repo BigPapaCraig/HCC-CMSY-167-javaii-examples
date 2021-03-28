@@ -11,7 +11,7 @@ public class RecursiveFactorial {
     }
 
     private static int factorial(int n) {
-        if (n == 0) {
+        if (n == 1) {
             // Base case
             return 1;
         }

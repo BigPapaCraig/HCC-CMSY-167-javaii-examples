@@ -12,7 +12,7 @@ public class IterativeFactorial {
 
     private static int factorial(int n) {
         int total = 1;
-        for (int i = 2; i < n; i ++) {
+        for (int i = 2; i <= n; i ++) {
             total *= i;
         }
         return total;
