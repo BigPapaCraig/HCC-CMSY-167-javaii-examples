@@ -18,6 +18,7 @@
     <module>scratch</module>
     <module>lambdas-and-streams</module>
     <module>recursion</module>
+      <module>data-structures</module>
   </modules>
 
 </project>
