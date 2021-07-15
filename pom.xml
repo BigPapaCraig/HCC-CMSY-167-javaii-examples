@@ -9,6 +9,7 @@
   <name>Java II Examples</name>
 
   <modules>
+    <module>sundays</module>
     <module>strings</module>
     <module>fileio</module>
     <module>javafx/pizza-calculator</module>
@@ -18,7 +19,7 @@
     <module>scratch</module>
     <module>lambdas-and-streams</module>
     <module>recursion</module>
-      <module>data-structures</module>
+    <module>data-structures</module>
   </modules>
 
 </project>
