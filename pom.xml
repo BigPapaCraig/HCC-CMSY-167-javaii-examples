@@ -12,14 +12,21 @@
     <module>sundays</module>
     <module>strings</module>
     <module>fileio</module>
-    <module>javafx/pizza-calculator</module>
-    <module>javafx/fxfileinfo</module>
+    <module>pizza-calculator</module>
+    <module>fxfileinfo</module>
     <module>inheritance</module>
     <module>collections</module>
-    <module>scratch</module>
     <module>lambdas-and-streams</module>
     <module>recursion</module>
     <module>data-structures</module>
+    <module>scratch</module>
+    <module>generics</module>
   </modules>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
 </project>
